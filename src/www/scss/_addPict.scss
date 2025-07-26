@@ -1,0 +1,323 @@
+.pictContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.step {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.step.active {
+    display: flex;
+}
+
+#step3 {
+    position: absolute;
+    bottom: 1.68rem;
+}
+
+h1 {
+    text-align: center;
+    margin-top: .76rem;
+    margin-bottom: 10px;
+    /*
+    color: #333;
+    font-size: 1.5rem;
+    */
+    padding: 0 20px;
+}
+
+#imageInput {
+    display: none;
+}
+
+.btns {
+    display: inline-flex;
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+
+    button {
+        &.action-cancel, .action-upload {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 15px 20px;
+            cursor: pointer;
+            text-align: center;
+            user-select: none;
+            font-size: larger;
+            width: 112px;
+        }
+
+        &.action-cancel {
+            background-color: $BG;
+            border: 2px solid $H1;
+        }
+        &.action-upload {
+            border: 2px solid $H1t;
+        }
+
+        &:first-child {
+            margin-left: 0;
+            margin-right: 1.7rem;
+        }
+
+        &:last-child {
+            margin-left: 1.7rem;
+            margin-right: 0;
+        }
+    }
+}
+
+#cropDoneBtn,
+#closeButton {
+    max-width: 40%;
+}
+
+.btn {
+    border: 1px solid $H1t;
+    background-color: $H1;
+    color: $BG;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 15px 20px;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    z-index: 10;
+}
+
+#imagePreviewContainer {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    background-color: #ddd;
+}
+
+#imageWrapper {
+    position: relative;
+    display: inline-block;
+    min-width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+#selectedImage {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+#cropFrame {
+    position: absolute;
+    border: 2px dashed rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.5);
+    cursor: move;
+}
+
+.resize-handle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: 2px solid #007AFF;
+    border-radius: 50%;
+    pointer-events: auto;
+}
+
+#resizeHandleBR {
+    right: -15px;
+    bottom: -15px;
+}
+
+#resizeHandleBL {
+    left: -15px;
+    bottom: -15px;
+}
+
+#resizeHandleTR {
+    right: -15px;
+    top: -15px;
+}
+
+#resizeHandleTL {
+    left: -15px;
+    top: -15px;
+}
+
+.instructions {
+    text-align: center;
+    margin: 10px 20px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/*
+.btn-group {
+    margin: 0.76rem 0;
+    position: fixed;
+    bottom: 1.48rem;
+    display: inline-flex;
+    justify-items: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    background-color: transparent;
+
+    .buttons {
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .action-upload {
+            border: 1px solid $H1t;
+            background-color: $H1;
+            color: $BG;
+        }
+        .action-cancel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-radius: 5px;
+            background-color: $BG;
+
+            border: 2px solid $H1t;
+        }
+
+        .action-cancel, .action-validate, .action-upload {
+            padding: 10px 20px;
+        }
+    }
+}
+
+.custom-file-label {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 4.2rem;
+    display: inline-flex;
+    align-items: center;
+    text-align: center;
+    border-radius: 7px;
+    margin-top: .76rem;
+    font-size: .96rem;
+
+    label {
+        background-image: url(/img/addPict.svg);
+        background-repeat: no-repeat;
+        background-position: 0 -.48rem;
+        background-size: 3.2rem 3.2rem;
+        font-family: Open-Sans;
+        white-space: nowrap;
+        margin: .76rem;
+        padding: .76rem 1.7rem .76rem 3.2rem;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    p {
+        width: 100%;
+        padding: .76rem;
+    }
+}
+
+#photoInput {
+    display: none;
+}
+*/
+
+
+#iosInfo {
+    color: $DARK;
+    background-color: $BG;
+    border: 2px solid $ALERT_BORDER;
+    border-radius: 8px;
+    margin: .76rem;
+    margin: 10px 20px;
+    padding: .76rem;
+    font-weight: bold;
+    img {
+        float: left;
+        margin: -.76rem .76rem 0 -.76rem;
+    }
+}
+#AddPict {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $BG;
+    margin: 0 auto;
+    z-index: 800;
+}
+
+#closeAddPict,
+#closePictMgt {
+    position: absolute;
+    bottom: 1.76rem;
+    width: 4.8rem;
+    height: 4.8rem;
+    margin: 0 auto;
+    border: none;
+    color: $BGt;
+    background-color: $H1;
+    border-radius: 50%;
+    background-image: url('/img/exit.svg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding: .76rem;
+    margin-left: calc(50vw - 2.4rem);
+
+    &.close {
+        background-color: $H1 !important;
+    }
+}
+
+
+#validateButton,
+#uploadButton {
+    text-align: center;
+    border: 1px solid $DARK;
+    border-radius: 5px;
+    color: $BG;
+    background-color: $H1;
+    //padding: 1.1rem 1.24rem;
+    font-family: Roboto;
+    font-size: large;
+    // height: 4.8rem;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+
+    &:disabled {
+        color: $DISABLED;
+        border-color: $GREY;
+        background-color: $GREY;
+    }
+
+
+    /* 
+    &::before {
+        content: url("/img/crop.svg");
+        color: $BG;
+
+    width: 48px;
+    background-repeat: no-repeat;
+    background-position: top left; 
+    }
+
+    span {
+        margin-left: .76rem;
+        justify-self: baseline;
+    }
+*/
+}

@@ -1,0 +1,11 @@
+[Match]
+Name=wlan1
+
+[Network]
+Address=10.2.X.1/24
+IPForward=yes
+RequiredForOnline=no
+
+[Route]
+Destination=10.1.0.0/16
+Gateway=10.1.X.1

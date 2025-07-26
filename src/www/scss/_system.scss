@@ -1,0 +1,196 @@
+#SystemMngt {
+    overflow-y: scroll !important;
+    background-color: $BG;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+}
+
+#rebootAll {
+    position: absolute;
+    right: 1rem;
+}
+
+#services {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.all {
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    display: inline-flex;
+    padding: .68rem;
+    background-color: rgba(52, 13, 117, .1);
+}
+
+.server {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 90%;
+    font-family: Roboto;
+
+    &:last-of-type {
+        padding-bottom: 6.4rem;
+    }
+
+    .server-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: .76rem;
+        padding: 10px;
+        background: #eee;
+        font-weight: bold;
+        cursor: pointer;
+
+        .chevron {
+            position: absolute;
+            right: 1.76rem;
+            margin-top: 0;
+            transition: transform 0.3s;
+            width: 1.76rem;
+            height: 1.76rem;
+            text-align: center;
+            vertical-align: top;
+            font-size: xx-large;
+            border-radius: 50%;
+            background-color: $BG;
+            margin-top: -.3rem;
+            padding-top: .16rem;
+            font-weight: bold;
+            color: $H1;
+
+            &.collapsed {
+                transform: rotate(180deg);
+            }
+        }
+
+        span {
+            text-align: left;
+            align-self: flex-start;
+
+            &:last-child {
+                font-size: 14px;
+                font-weight: normal;
+            }
+        }
+
+        &.left {
+            text-align: left;
+            &:last-of-type {
+                font-size: 14px;
+            }
+        }
+        &:hover {
+            background: #ddd;
+        }
+    }
+
+    .service-list {
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .serviceName {
+        font-size: smaller;
+        width: 11rem;
+        display: inline-block;
+    }
+
+    .serverType {
+        font-size: 14px;
+        font-weight: normal;
+    }
+
+    .service,
+    .options {
+        display: flex;
+        align-items: center;
+        align-self: center;
+        padding: 5px 0;
+    }
+
+    .service button {
+        font-family: Open-Sans;
+        border: 2px, solid, $H1;
+        background-color: $BG;
+        color: $H1;
+        padding: 0.12rem 0.24rem;
+        border-radius: 3px;
+        transition: background-color 0.3s ease;
+        margin-left: 0.9rem;
+
+        &.alert {
+            position: relative;
+            background-color: $ALERT;
+            color: white;
+            border-color: $ALERT_BORDER;
+        }
+    }
+
+}
+
+.status-on {
+    font-family: Roboto;
+    font-size: smaller;
+    color: $SERVICE_ON;
+    width: 4rem;
+    display: inline-block;
+}
+
+.status-off {
+    font-family: Roboto;
+    font-size: smaller;
+    color: $SERVICE_OFF;
+    width: 4rem;
+    display: inline-block;
+}
+
+.status-on::before {
+    white-space: pre;
+    content: "🔵 ";
+}
+
+.status-off::before {
+    white-space: pre;
+    content: "🟠 ";
+}
+
+.options {
+    align-self: right;
+
+    h4 {
+        padding: .68rem;
+        font-weight: bold;
+        font-size: .96rem;
+    }
+
+    .reboot {
+        margin: 0.96rem 0 0.36rem 0;
+        height: 32px;
+        border: 2px solid rgb(21, 21, 21);
+        background-image: url("/img/reboot.svg");
+        background-size: contain;
+        background-position-x: left;
+        background-repeat: no-repeat;
+        padding: 0.18rem 1.1rem 0.18rem 37px;
+        border-radius: 4px;
+        background-color: rgb(247, 247, 247);
+        color: rgb(21, 21, 21);
+    }
+
+    &.all {
+        white-space: pre-line;
+        align-items: flex-end;
+    }
+}

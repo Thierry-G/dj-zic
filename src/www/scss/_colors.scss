@@ -1,0 +1,57 @@
+
+@font-face {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    src:
+        url('/css/fonts/montserrat-v25-latin-regular.woff2') format('woff2'),
+        url('/css/fonts/montserrat-v25-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    font-weight: 400;
+    src:
+        url('/css/fonts/roboto-v30-latin-regular.woff2') format('woff2'),
+        url('/css/fonts/roboto-v30-latin-regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Open-Sans';
+    font-weight: 300;
+    src:
+        url('/css/fonts/open-sans-v34-latin-regular.woff2') format('woff2'),
+        url('/css/fonts/open-sans-v34-latin-regular.woff') format('woff');
+}
+
+$BG: rgb(247, 247, 247);
+$BGt: rgba(247, 247, 247, .3);
+$H1: rgb(52, 13, 117);
+$H1t: rgba(52, 13, 117,.3);
+$LH1: rgb(91, 22, 202);
+$H2: rgb(93, 132, 180);
+$H3: rgb(237, 20, 169);
+$DARK: rgb(21, 21, 21);
+$DARKt: rgba(21, 21, 21,.3);
+$LGREY: rgb(240, 240, 240);
+$GREY: rgb(187, 187, 187);
+$DISABLED:rgb(99, 99, 99);
+$ALERT: rgb(255, 103, 35);
+$ALERT_BORDER: rgb(173, 69, 23);
+$SERVICE_ON: rgb(0,116,186);
+$SERVICE_OFF: rgb(255,103,35);
+/* #800040 #B90064 */
+
+$logo: 120px;
+$ratio: 42px;
+$size: calc($logo - $ratio);
+
+$logo_425: 72px;
+$ratio_425: 7px;
+$size_425: 48px;
+
+$logo_375: 64px;
+$ratio_375: 3px;
+$size_375: 42px;
+
+
+

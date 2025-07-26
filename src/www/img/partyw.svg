@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg">
+  <path d="M 3.318 20.682 C 4.025 21.389 4.732 21.389 5.793 21.035 L 16.243 15.652 C 16.845 15.342 16.971 14.535 16.492 14.056 L 9.944 7.508 C 9.465 7.029 8.658 7.155 8.348 7.757 L 2.965 18.207 C 2.611 19.268 2.611 19.975 3.318 20.682 Z" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill="none" fill-rule="evenodd"/>
+  <path d="M 17.268 6.732 L 18.636 6.048 C 18.947 5.893 19.014 5.478 18.768 5.232 L 18.768 5.232 C 18.522 4.986 18.589 4.571 18.901 4.416 L 20.268 3.732" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill="none" fill-rule="evenodd"/>
+  <line x1="15.268" y1="8.732" x2="15.393" y2="8.732" id="Path" stroke="r" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="18.643" y1="12.232" x2="18.768" y2="12.232" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="11.268" y1="4.732" x2="10.268" y2="3.232" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="14.768" y1="5.232" x2="15.268" y2="2.732" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="21.268" y1="9.732" x2="18.768" y2="9.232" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="11.268" y1="9.232" x2="11.268" y2="18.232" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+  <line x1="7.268" y1="10.232" x2="7.268" y2="20.232" id="Path" stroke="rgb(247,247,247)" stroke-width="2" stroke-linecap="round" fill-rule="evenodd"/>
+</svg>

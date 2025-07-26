@@ -1,0 +1,67 @@
+<?php
+session_start();
+if (isset($_SESSION['auth'])) {
+    if ($_SESSION['auth'] === true) {
+        $_SESSION['submited'] = 0;
+    }
+} else {
+    header('Location: login.php');
+    exit;
+}
+$lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+$lang == "fr" ? $lang = "fr" : $lang = "en";
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/radar.min.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div id="streamers">
+            <svg class="streamers" viewBox="0 0 64 64" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                    <path d="M 24.459 39.627 C 25.499 40.67 25.499 42.358 24.459 43.4 C 23.416 44.44 21.728 44.44 20.685 43.4 C 14.437 37.15 14.437 27.019 20.685 20.771 C 21.728 19.731 23.416 19.731 24.459 20.771 C 25.499 21.814 25.499 23.502 24.459 24.542 C 20.291 28.71 20.291 35.462 24.459 39.627 Z" style="fill:currentColor"></path>
+                    <path d="M 39.541 24.449 C 38.501 23.409 38.501 21.718 39.541 20.678 C 40.584 19.638 42.272 19.638 43.315 20.678 C 49.563 26.926 49.563 37.056 43.315 43.304 C 42.272 44.344 40.584 44.344 39.541 43.304 C 38.501 42.264 38.501 40.574 39.541 39.534 C 43.707 35.368 43.707 28.614 39.541 24.449 Z" style="fill:currentColor"></path>
+                </g>
+                <g>
+                    <path d="M 16.915 47.171 C 17.955 48.211 17.955 49.902 16.915 50.942 C 15.875 51.982 14.184 51.982 13.144 50.942 C 2.731 40.526 2.731 23.643 13.144 13.23 C 14.184 12.187 15.875 12.187 16.915 13.23 C 17.955 14.27 17.955 15.961 16.915 17.001 C 8.584 25.331 8.584 38.838 16.915 47.171 Z" style="fill:currentColor"></path>
+                    <path d="M 47.085 16.83 C 46.045 15.79 46.045 14.099 47.085 13.059 C 48.125 12.019 49.816 12.019 50.856 13.059 C 61.269 23.473 61.269 40.358 50.856 50.771 C 49.816 51.811 48.125 51.811 47.085 50.771 C 46.045 49.731 46.045 48.04 47.085 47 C 55.416 38.67 55.416 25.161 47.085 16.83 Z" style="fill:currentColor"></path>
+                </g>
+                <circle cx="32" cy="32.086" r="5.333" style="fill:currentColor"></circle>
+            </svg> <span id="totalStreamers">--</span>
+
+        </div>
+    </div>
+    <button id="close" class="close" title="<?php echo $lang == 'fr' ? "Annuler" : "Cancel"; ?>"></button>
+    <div class="radar-container">
+        <div class="radar-viewport">
+            <!-- Master device (origin point) -->
+            <div id="master">
+
+                <div class="device-range"></div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="radar-btns">
+        <div class="dot"></div>
+        <div class="layout">
+            <div class="label-host" id="label-host"></div>
+            <button class="button zoom-in" id="zoom-in" label="Zoom In"></button>
+            <div class="scale-indicator" title="Zoom">1.0x</div>
+            <button class="button center-btn" id="center" label="center view"></button>
+            <button class="button zoom-out" id="zoom-out" label="Zoom Out"></button>
+        </div>
+    </div>
+    <script src="js/radar.js"></script>
+
+</html>

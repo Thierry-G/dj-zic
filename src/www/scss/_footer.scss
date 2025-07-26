@@ -1,0 +1,163 @@
+.footer {
+    //position: fixed;
+    z-index: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex: 0 1 auto;
+    //padding: .76rem .76rem 0 .76rem;
+    width: 100%;
+    height: 6.4rem;
+    max-width: 100%;
+    background-color: $DARK;
+
+    li {
+        display: inline-flex;
+        position: relative;
+        align-items: center;
+        flex-direction: column;
+        font-family: Open-Sans;
+        width: 4.8rem;
+        height: 4.8rem;
+        color: $BG;
+        margin: .76rem .9rem;
+        
+        font-size: smaller;
+        font-family: Open-Sans;
+        //padding: 0.12rem 0 0.24rem 0;
+        cursor: pointer;
+        background-color: transparent !important;
+
+        button {
+            width: 4.8rem;
+            height: 4.8rem;
+            border: none;
+            background-color: transparent;
+        }
+        
+        &.active {
+            border-radius: 16px;
+            background-color: $BG;
+            color: $DARK;
+
+            button {
+                border-radius: 4px;
+                background-color: $BG;
+                border: none;
+            }
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: -24px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-width: 14px;
+                border-style: solid;
+                border-color: transparent transparent $BG transparent;
+            }
+        }
+    }
+}
+
+#stream {
+    background-image: url(/img/streamw.svg);
+    background-size: 3.2rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    &::after {
+        content: 'Stream';
+        color: $BG;
+        font-family: Roboto;
+        font-size: 1.2rem;
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+    &.active {
+        background-image: url(/img/stream.svg);
+    }
+    &.active::after {
+        color: $DARK;
+    }
+
+}
+
+#system {
+    background-image: url(/img/systemw.svg);
+    background-size: 3.2rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    &::after {
+        content: 'System';
+        color: $BG;
+        font-family: Roboto;
+        font-size: 1.2rem;
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+
+    &.active {
+        background-image: url(/img/system.svg);
+    }
+
+    &.active::after {
+        color: $DARK;
+    }    
+}
+
+#party {
+    background-image: url(/img/partyw.svg);
+    background-size: 3.2rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    &::after {
+        content: 'Fiesta';
+        color: $BG;
+        font-family: Roboto;
+        font-size: 1.2rem;
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+
+    &.active {
+        background-image: url(/img/party.svg);
+    }
+
+    &.active::after {
+        color: $DARK;
+    }    
+}
+
+
+#radar {
+    background-image: url(/img/radarw.svg);
+    background-size: 3.2rem;
+    background-position: top center;
+    background-repeat: no-repeat;
+
+    &::after {
+        content: 'Radar';
+        color: $BG;
+        font-family: Roboto;
+        font-size: 1.2rem;
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+
+    &.active {
+        background-image: url(/img/radar.svg);
+    }
+
+    &.active::after {
+        color: $DARK;
+    }    
+}

@@ -1,0 +1,326 @@
+#rightMenu {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+#djPict {
+    background-image: url("/img/addPict.svg");
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    min-width: 6.4rem;
+    &.fr::after {
+        content: "Ajouter";
+        display: block;
+        text-align: center;
+        margin-top: 3.2rem;
+    }
+    &.en::after {
+        content: "Add";
+        display: block;
+        text-align: center;
+        margin-top: 3.2rem;
+    }
+}
+
+#pictMgt {
+    width: 100%;
+    display: flex;
+    background-image: url("/img/manageBg.svg");
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+    &.fr::after {
+        content: "Modifier";
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+    &.en::after {
+        content: "Modify";
+        margin-top: 3.2rem;
+        display: block;
+        text-align: center;
+    }
+}
+
+#djPict,
+#pictMgt {
+    background-color: $H1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: $BG;
+    aspect-ratio: 1 / 1;
+    max-height: 6.4rem;
+    background-position: center .64rem;
+    background-repeat: no-repeat;
+    background-size: 3.2rem;
+    border-radius: 50%;
+    margin-right: .76rem;
+    span {
+        font-size: 0.9rem;
+        margin-top: 3.2rem;
+        padding: .16rem;
+        display: flex;
+    }
+}
+
+#djNameMenu,
+#djPictMenu {
+    width: 100vw;
+    height: 120px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+
+
+    &.selected {
+        width: 100%;
+        background-color: $BGt;
+
+        font-family: Roboto;
+        font-size: 1rem;
+
+        svg {
+            align-self: center;
+            justify-self: center;
+            
+        }
+
+        input[type="text"] {
+            color: $H1;
+            padding: .76rem .76rem .68rem .76rem;
+            margin-right: 1.1rem;
+        }
+    }
+}
+
+#djNameMenu {
+    h2 {
+        position: absolute;
+        left: .76rem;
+        color: $BG;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-weight: bolder;
+        padding: .76rem;
+        border-radius: 8px;
+        background-color: rgba(21, 21, 21,.6);
+        white-space: normal; 
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        width: calc(100vw - 7.2rem);
+    }
+
+    svg {
+        color: $H1;
+        background-color: $BGt;
+        border-radius: 50%;
+    }
+}
+
+#djPictEdit {
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+}
+
+.modify {
+    width: 100%;
+    color: $BG;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: Roboto;
+    font-size: 1rem;
+
+
+    svg {
+        margin: .96rem 0 .76rem 0;
+        width: $logo;
+        height: $logo;
+
+    }
+
+    span {
+        margin: 0 0 .76rem 0;
+    }
+
+    ul {
+        height: 6.4rem;
+    }
+}
+
+.closed {
+    position: relative;
+    height: $logo;
+    background-color: transparent;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    ul {
+        display: none !important;
+    }
+}
+
+p.right {
+    text-align: center;
+    color: $DARK;
+    width: 90px;
+    padding: .16rem;
+    background-color: $BG;
+    border-radius: 8px;
+}
+
+.charCount {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#charCount {
+    padding: .16rem;
+}
+
+#djNameInput {
+    width: 100%;
+    color: $H1;
+    padding: .76rem;
+    font-family: Open-sans;
+    font-size: 24px;
+    height: auto;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+#djNameClose, #djPictClose {
+    border: none;
+    width: 6.4rem;
+    height: 6.4rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("/img/exitD.svg");
+}
+
+#ActionChangeDjName:disabled {
+    color: $DISABLED;
+    border-color: $DISABLED;
+    background-color: $LGREY;
+}
+
+.btn-grp {
+    width: 100%;
+
+
+    .wrapperBtn {
+        margin: .76rem;
+        display: grid;
+        column-gap: 64px;
+        align-items: center;
+        justify-content: center;
+        
+        #ActionChangeDjName {
+            grid-column: 1;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        #djNameClose {
+            grid-column: 2;
+            background-size: 4.8rem;
+        }
+    }
+}
+
+
+
+.close {
+    margin: 0 auto;
+   
+    background-color: unset !important;
+}
+#djNameBtn {
+    padding-left: .76rem;
+}
+#djPictBtn {
+    padding-left: .76rem;
+}
+#djNameBtn, #djPictBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 1px transparent;
+    width: 7.2rem;
+    height: 7.2rem;
+
+    &.selected {
+        svg {
+            color: $BG;
+        }
+       
+        border: none;
+        background-color: $BG !important;
+        @media screen and (min-width: 425px) {
+            background-color: $BG !important;
+        }
+        @media screen and (min-width: 320px) {
+            background-color: $BG !important;
+        }
+        @media screen and (min-width: 375px) {
+            background-color: $BG !important;
+        }
+        @media screen and (min-width: 320px) {
+            background-color: $BG !important;
+        }
+    }
+}
+
+#djNameMenu h2,
+#djNameMenu svg,
+#djPictMenu svg {
+    cursor: pointer;
+}
+
+#djNameEdit,
+#djPictEdit,
+#djPictMenu,
+#djNameMenu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    color: $H1;
+    height: $logo;
+    
+    &.selected {
+        background-color: $BGt;
+        border: .76rem solid transparent;
+    }
+
+    svg {
+        width: $logo;
+        height: 3.2rem;
+        color: $H1;
+        background-color: $BGt;
+        border-radius: 50%;
+
+        @media screen and (min-width: 375px) {
+            width: $logo_375;
+            height: $logo_375;
+        }
+
+        @media screen and (min-width: 425px) {
+            width: $logo_425;
+            height: $logo_425;
+        }
+
+        @media screen and (min-width: 1024px) {
+            justify-content: center;
+            width: $logo;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+[Match]
+Name=wlan0
+
+[Network]
+Address=10.1.X.1/16
+MulticastDNS=yes
+LinkLocalAddressing=no
+RequiredForOnline=no
+
+[Route]
+Destination=10.1.0.0/16
+Scope=link
+
+[Route]
+Destination=10.2.X.0/24
+Gateway=10.1.X.1

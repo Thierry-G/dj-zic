@@ -1,0 +1,54 @@
+sudo apt install acl
+sudo setfacl -R -m u:thierry:rwX /var/www/html
+sudo setfacl -dR -m u:thierry:rwX /var/www/html
+sudo setfacl -R -m u:thierry:rwX /opt/djZic
+sudo setfacl -dR -m u:thierry:rwX /opt/djZic
+
+For usb dongle:
+sh -c 'wget linux.brostrend.com/install -O /tmp/install && sh /tmp/install'
+
+Add to repository:
+echo "deb http://linux.brostrend.com/ stable main" | sudo tee /etc/apt/sources.list.d/brostrend.list
+
+sudo hostapd -d /etc/hostapd/hostapd.conf
+
+sudo systemctl edit dnsmasq.service --full
+
+
+authorized_keys	pi	pi	600 (rw-------)	Stores public keys allowed to SSH in
+id_rsa or ud_rsa	pi	pi	600 (rw-------)	Your private SSH key (keep very secure!)
+known_hosts	pi	pi	644 (rw-r--r--)
+
+
+ /etc/php/8.2/fpm/php.ini 
+session.gc_maxlifetime = 1440 
+86400 1day
+
+
+sudo systemctl daemon-reload
+ sudo journalctl -xe -f
+
+
+Pi Zero: 5V 1.5A minimum
+
+Pi 3B/3B+: 5V 2.5A minimum
+
+Pi 4: 5V 3A minimum
+
+Pi 5: 5V 5A minimum (via USB-C with Power Delivery)
+___________________________________________________
+
+USB 2.0: Up to 0.5A (500mA)
+
+USB 3.0: Up to 0.9A (900mA)
+
+USB charging ports or USB-C: 1.5A, 2A, 3A or more
+
+
+https://paypal.me/TGrandsart?country.x=FR&locale.x=fr_FR
+
+
+sudo scp -i /home/thierry/.ssh/id_rsa_djzic "/var/www/html/admin/uploads//upload_log.json" thierry@10.1.0.1:"/var/www/html/admin/uploads//upload_log.json" && sudo scp -i /home/thierry/.ssh/id_rsa_djzic "/var/www/html/data/stream.json" thierry@10.1.0.1:"/var/www/html/data/stream.json"
+
+            "10.1.0.1": {"hostname": "dj-master", "type": "RPi4", "location": "Lab"},
+            "10.1.1.1": {"hostname": "dj-relay1", "type": "RPi4", "location": "Workshop"},

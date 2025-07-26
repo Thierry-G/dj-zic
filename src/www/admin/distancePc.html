@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wi-Fi Radar Map</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    body {
+      margin: 0;
+      padding: 10px;
+      background-color: #333;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      touch-action: manipulation;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    canvas {
+      background-color: #444;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      border: 2px solid #555;
+      border-radius: 5px;
+    }
+
+    .info-panel {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #444;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 400px;
+      font-size: 0.9rem;
+    }
+
+    .refresh-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    @media (max-height: 600px) {
+      h1 {
+        font-size: 1.2rem;
+        margin: 5px 0;
+      }
+      .canvas-container {
+        max-width: 300px;
+      }
+      .info-panel {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Wi-Fi Radar View</h1>
+    
+    <div class="canvas-container">
+      <canvas id="radarCanvas"></canvas>
+    </div>
+    
+    <div class="info-panel" id="infoPanel">
+      Loading device information...
+    </div>
+    
+    <button class="refresh-btn" onclick="drawRadar()">Refresh</button>
+  </div>
+
+  <script>
+    let canvas, ctx;
+    let canvasSize = Math.min(window.innerWidth - 40, 400, window.innerHeight - 200);
+
+    function initCanvas() {
+      canvas = document.getElementById("radarCanvas");
+      ctx = canvas.getContext("2d");
+      
+      // Set canvas dimensions
+      canvas.width = canvasSize;
+      canvas.height = canvasSize;
+    }
+
+    function updateInfoPanel(json) {
+      const infoPanel = document.getElementById("infoPanel");
+      const devices = json.devices;
+      const localName = json.hostname;
+      
+      if (Object.keys(devices).length === 0) {
+        infoPanel.innerHTML = `No nearby devices detected (${new Date().toLocaleTimeString()})`;
+        return;
+      }
+      
+      let html = `<strong>${localName}</strong> detected:<br>`;
+      
+      for (const [name, device] of Object.entries(devices)) {
+        html += `
+          <div style="margin-top: 8px; text-align: left;">
+            <strong>${name}</strong><br>
+            Distance: ${device.distance} m<br>
+            Signal: ${device.rssi} dBm<br>
+            Location: ${device.location}
+          </div>
+        `;
+      }
+      
+      html += `<div style="margin-top: 8px; font-size: 0.8em; color: #aaa;">
+        Last update: ${new Date().toLocaleTimeString()}
+      </div>`;
+      
+      infoPanel.innerHTML = html;
+    }
+
+    async function drawRadar() {
+      if (!canvas) initCanvas();
+      
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      try {
+        const res = await fetch("../data/distance_data.json");
+        const json = await res.json();
+        const devices = json.devices;
+        const localName = json.hostname;
+
+        const radarCenterX = canvas.width / 2;
+        const radarCenterY = canvas.height / 2;
+
+        const maxRange = 50; // Reduced for mobile
+        const metersToPixels = (canvas.width * 0.4) / maxRange;
+        const maxRangePx = maxRange * metersToPixels;
+
+        const dotRadius = canvas.width * 0.03;
+
+        // --- Background Rings ---
+        ctx.strokeStyle = "rgba(255,255,255,0.2)";
+        ctx.fillStyle = "rgba(255,255,255,0.03)";
+        ctx.font = `${canvas.width * 0.03}px Arial`;
+        ctx.textAlign = "center";
+
+        for (let m = 5; m <= maxRange; m += 5) {
+          const r = m * metersToPixels;
+          ctx.beginPath();
+          ctx.arc(radarCenterX, radarCenterY, r, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.stroke();
+          
+          if (m % 10 === 0) {
+            ctx.fillText(`${m} m`, radarCenterX, radarCenterY - r + canvas.width * 0.02);
+          }
+        }
+
+        // --- Warning Ring (last 10m) ---
+        const warningStart = (maxRange - 10) * metersToPixels;
+        const warningEnd = maxRangePx;
+
+        const stripeWidth = canvas.width * 0.01;
+        for (let a = 0; a < 2 * Math.PI * 30; a += 1) {
+          const angle = a / 30;
+          const alt = (a % 2 === 0);
+          ctx.beginPath();
+          ctx.strokeStyle = alt ? "orange" : "black";
+          ctx.lineWidth = stripeWidth;
+          ctx.arc(radarCenterX, radarCenterY, (warningStart + warningEnd) / 2, angle, angle + 0.06);
+          ctx.stroke();
+        }
+
+        ctx.lineWidth = 1;
+
+        // --- Draw Local Device ---
+        ctx.beginPath();
+        ctx.arc(radarCenterX, radarCenterY, dotRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.strokeStyle = "#fff";
+        ctx.stroke();
+
+        ctx.fillStyle = "#fff";
+        ctx.font = `${canvas.width * 0.035}px Arial`;
+        ctx.fillText("You", radarCenterX, radarCenterY + dotRadius + canvas.width * 0.05);
+
+        // --- Draw Remote Devices ---
+        const entries = Object.entries(devices);
+        const angleStep = Math.PI / (entries.length + 1);
+
+        for (let i = 0; i < entries.length; i++) {
+          const [name, device] = entries[i];
+          const angle = angleStep * (i + 1) - Math.PI / 2;
+
+          const dist = Math.min(device.distance || 10, maxRange);
+          const pxDist = dist * metersToPixels;
+
+          const devX = radarCenterX + Math.cos(angle) * pxDist;
+          const devY = radarCenterY + Math.sin(angle) * pxDist;
+
+          // Range bubble
+          ctx.beginPath();
+          ctx.arc(devX, devY, dist * metersToPixels, 0, 2 * Math.PI);
+          ctx.fillStyle = "rgba(144, 238, 144, 0.3)";
+          ctx.fill();
+          ctx.strokeStyle = "rgba(0,255,0,0.3)";
+          ctx.stroke();
+
+          // Device Dot
+          ctx.beginPath();
+          ctx.arc(devX, devY, dotRadius, 0, 2 * Math.PI);
+          ctx.fillStyle = "black";
+          ctx.fill();
+          ctx.strokeStyle = "#0f0";
+          ctx.stroke();
+
+          // Device Name
+          ctx.fillStyle = "white";
+          ctx.font = `${canvas.width * 0.035}px Arial`;
+          ctx.fillText(name, devX, devY - dotRadius - canvas.width * 0.03);
+
+          // Distance Label
+          ctx.beginPath();
+          ctx.arc(devX, devY, dotRadius * 1.2, 0, 2 * Math.PI);
+          ctx.fillStyle = "black";
+          ctx.fill();
+          ctx.strokeStyle = "white";
+          ctx.stroke();
+
+          ctx.fillStyle = "white";
+          ctx.font = `${canvas.width * 0.03}px Arial`;
+          ctx.fillText(`${dist}m`, devX, devY + canvas.width * 0.01);
+        }
+
+        updateInfoPanel(json);
+      } catch (error) {
+        console.error("Error loading data:", error);
+        document.getElementById("infoPanel").innerHTML = 
+          "Error loading device data. Please try again.";
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('load', () => {
+      initCanvas();
+      drawRadar();
+      // Refresh every 10 seconds
+      setInterval(drawRadar, 10000);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      const newSize = Math.min(window.innerWidth - 40, 400, window.innerHeight - 200);
+      if (Math.abs(newSize - canvasSize) > 20) { // Only resize if significant change
+        canvasSize = newSize;
+        initCanvas();
+        drawRadar();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+#PartyMngt {
+    background-color: $BG;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 100%;
+
+    .wrapper {
+        width: 100%;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        height: auto !important;
+
+
+        &:first-child {
+            margin-top: .76rem;
+        }
+
+        svg {
+            height: 120px;
+        }
+    }
+
+    #endParty:disabled {
+        color: $DISABLED;
+        border-color: $GREY;
+        background-color:$GREY;
+    }
+    
+    button {
+
+        &.cutSound {
+            margin: 0 .76rem 1.2rem .76rem;
+            padding: 1.2rem 2.4rem;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        &.shudown {
+            padding: 1.2rem 1.2rem 1.2rem 2.4rem;
+            background-image: url(/img/shutdownw.svg);
+            background-position: .76rem center;
+            background-repeat: no-repeat;
+            background-size: 3.2rem;
+            margin: .76rem;
+
+            &::after {
+                content: 'Eteindre';
+                color: $BG;
+                padding-left: 2.1rem;
+            }
+        }
+
+        &.off {
+            background-color: $ALERT;
+            border: 3px solid $ALERT_BORDER;
+            font-weight: bold;
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 12px 24px;
+        font-size: 16px;
+        cursor: pointer;
+
+
+        border: none;
+        border-radius: 25px;
+
+        transition: all 0.3s ease;
+    }
+
+    button:active {
+        transform: translateY(1px);
+    }
+
+    svg {
+        width: 200px;
+        height: 200px;
+    }
+
+
+    @keyframes leftWavePulse {
+
+        0%,
+        100% {
+            transform: translateX(-1px) scaleY(1);
+            opacity: 1;
+        }
+
+        20% {
+            transform: translateX(-3px) scaleY(1.05);
+            opacity: 0.9;
+        }
+
+        50% {
+            transform: translateX(-2px) scaleY(1.15);
+            opacity: 0.8;
+        }
+
+        80% {
+            transform: translateX(-1px) scaleY(1.1);
+            opacity: 0.9;
+        }
+    }
+
+    @keyframes rightWavePulse {
+
+        0%,
+        100% {
+            transform: translateX(1px) scaleY(1);
+            opacity: 1;
+        }
+
+        20% {
+            transform: translateX(3px) scaleY(1.05);
+            opacity: 0.9;
+        }
+
+        50% {
+            transform: translateX(2px) scaleY(1.15);
+            opacity: 0.8;
+        }
+
+        80% {
+            transform: translateX(1px) scaleY(1.1);
+            opacity: 0.9;
+        }
+    }
+
+    #leftWave1 {
+        animation: leftWavePulse 2s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+        transform-box: fill-box;
+        transform-origin: center center;
+    }
+
+    #leftWave2 {
+        animation: leftWavePulse 2s cubic-bezier(0.42, 0, 0.58, 1) infinite 0.2s;
+        transform-box: fill-box;
+        transform-origin: center center;
+    }
+
+    #rightWave1 {
+        animation: rightWavePulse 2s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+        transform-box: fill-box;
+        transform-origin: center center;
+    }
+
+    #rightWave2 {
+        animation: rightWavePulse 2s cubic-bezier(0.42, 0, 0.58, 1) infinite 0.2s;
+        transform-box: fill-box;
+        transform-origin: center center;
+    }
+
+    /* Speaker remains static */
+    #speaker {
+        transform: translateY(0) scale(1);
+    }
+
+    #speaker {
+        position: relative;
+        /* Ensure it stays in place */
+        transform: none;
+        /* Remove any unintended transformations */
+        animation: none;
+        /* Disable animations if any */
+    }
+}

@@ -1,0 +1,112 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow: auto;
+}
+body {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+    overflow: hidden;
+    background-color: $BG;
+    background-image: url("/img/default.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    &.noBg {
+        background-color: $BG;
+        background-image: none;
+        
+        .logo {
+            background-color: white;
+        }
+        
+        h1.mg a {
+            color: $H1 !important;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat';
+    font-weight: 400;
+    color: $H1;
+
+    &.mg {
+        width: auto !important;
+        margin-left: .76rem;
+    }
+}
+
+p {
+    text-align: left;
+    font-family: Roboto;
+}
+
+.header {
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: calc(100% - .96rem);
+    margin: .96rem;
+    height: $logo;
+    max-height: calc($logo + .96rem);
+
+    h1 {
+        white-space: nowrap;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    &.wBg {
+        background-color: $BG;
+    }
+
+    @include mediaHeight;
+}
+
+.logo {
+    width: $logo;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: $BG;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.2rem;
+    transition: background-color 1s ease-in-out;
+
+    svg {
+        width: $size;
+        height: $size;
+        border-radius: 16px;
+    }
+    @include logoSizers;
+}
+
+#actionScreen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    display: block;
+    overflow-y: scroll;
+}

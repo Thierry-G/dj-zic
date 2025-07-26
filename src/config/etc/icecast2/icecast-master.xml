@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<icecast>
+    <limits>
+        <clients>150</clients>
+        <sources>2</sources>
+        <queue-size>524288</queue-size>
+        <client-timeout>30</client-timeout>
+        <header-timeout>15</header-timeout>
+        <burst-on-connect>1</burst-on-connect>
+        <source-timeout>10</source-timeout>
+        <burst-size>65535</burst-size>
+    </limits>
+
+    <authentication>
+        <source-password>XXXXXX</source-password>
+        <relay-password>XXXXXX</relay-password>
+        <admin-user>XXXXXX</admin-user>
+        <admin-password>XXXXXX</admin-password>
+    </authentication>
+
+    <hostname>127.0.0.1</hostname>
+
+    <!-- Add both HTTP and HTTPS sockets -->
+    <listen-socket>
+        <port>8000</port>
+    </listen-socket>
+  
+    <http-headers>
+       <header name="Access-Control-Allow-Origin" value="*" />
+       <header name="Access-Control-Allow-Headers" value="Origin, X-Requested-With, Content-Type, Accept" />
+       <header name="access-control-allow-methods" value="POST, GET, OPTIONS" />
+   </http-headers>
+
+     <paths>
+        <basedir>/usr/share/icecast2</basedir>
+        <logdir>/var/log/icecast2</logdir>
+        <webroot>/usr/share/icecast2/web</webroot>
+        <adminroot>/usr/share/icecast2/admin</adminroot>
+        <alias source="/" destination="/status.xsl"/>
+    </paths>
+
+    <mime-types>
+        <mime-type name="audio/mpeg">mp3</mime-type>
+        <mime-type name="application/ogg">ogg</mime-type>
+        <mime-type name="audio/ogg">ogg</mime-type>
+        <mime-type name="audio/aac">aac</mime-type>
+    </mime-types>
+   <mount>
+        <mount-name>/stream</mount-name>
+        <charset>UTF-8</charset>
+        <public>0</public>
+        <stream-name>DJ Music</stream-name>
+        <content-type>audio/mpeg</content-type>
+        <stream-url>http://dj.zic:8000/stream</stream-url>
+	 <subtype>mp3</subtype>
+    </mount>
+    <logging>
+        <accesslog>access.log</accesslog>
+        <errorlog>error.log</errorlog>
+        <loglevel>3</loglevel>
+        <logsize>10000</logsize>
+    </logging>
+
+    <security>
+        <chroot>0</chroot>
+        <changeowner>
+            <user>icecast2</user>
+            <group>icecast</group>
+        </changeowner>
+    </security>
+</icecast>
+

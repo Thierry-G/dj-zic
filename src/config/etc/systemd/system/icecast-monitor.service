@@ -1,0 +1,15 @@
+[Unit]
+Description=Icecast Listener Monitor (Python venv)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/djZic
+Environment="PATH=/opt/djZic/venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/opt/djZic/venv/bin/python /opt/djZic/icecastMonitor.py
+Restart=always
+User=www-data
+Group=www-data
+
+[Install]
+WantedBy=multi-user.target

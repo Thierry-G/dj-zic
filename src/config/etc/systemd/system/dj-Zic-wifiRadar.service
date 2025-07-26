@@ -1,0 +1,14 @@
+[Unit]
+Description=WiFi Distance Monitor Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/djZic/wiFiDistanceMonitor.py
+WorkingDirectory=/opt/djZic
+Restart=on-failure
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target

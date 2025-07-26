@@ -1,0 +1,19 @@
+[Unit]
+Description=DjZic Stream Server (Python venv)
+After=network-online.target icecast2.service
+Requires=icecast2.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/djZic
+Environment="PATH=/opt/djZic/venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStartPre=/bin/bash -c 'until nc -z localhost 8000; do sleep 1; done'
+ExecStart=/opt/djZic/venv/bin/python streamPlayer.py --no-logging
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

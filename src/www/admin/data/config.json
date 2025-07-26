@@ -1,0 +1,21 @@
+{
+  "description": {
+    "en": {
+      "djZic-stream": "Sound capture and encoding",
+      "djZic-status": "Clients messages status",
+      "icecast2": "Streaming server",
+      "lighttpd": "Web server",
+      "dnsmasq": "DNS service",
+      "hostapd": "Wi-Fi Acces Point"
+    },
+    "fr": {
+      "djZic-stream": "Capture son et encodage",
+      "djZic-status": "Messages aux clients",
+      "icecast2": "Serveur de streaming",
+      "lighttpd": "Serveur Web",
+      "dnsmasq": "Serveur DNS",
+      "hostapd": "Point d'accès Wi-Fi"
+    }
+  },
+  "servers": []
+}

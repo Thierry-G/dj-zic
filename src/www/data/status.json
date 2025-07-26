@@ -1,0 +1,1 @@
+{"sound": "silent", "services": {"icecast2": 1, "djZic-stream": 1, "djZic-status": 1, "dnsmasq": 1, "lighttpd": 1, "hostapd": 1}, "stream": {"id": "default", "src": "", "live": "false", "dj": "Dj Name goes here!","status":"start"}}

@@ -1,0 +1,146 @@
+@import 'colors';
+
+h1 {
+    display: inline-flex;
+    align-items: center;
+    width: 90%;
+    max-width: 90%;
+    svg {
+        width: 32px;
+        height: 32px;
+    }
+    span {
+        margin-left: 1.24rem;
+    }
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#doughnutChart {
+    width: 100px;
+    /* Fixed width for the canvas */
+    height: 100px;
+    /* Fixed height for the canvas */
+}
+
+.text-info {
+    margin-left: 15px;
+    /* Space between chart and text */
+    font-family: Roboto;
+    white-space: nowrap;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.text-info p {
+    margin: 5px 0;
+}
+
+.date, .time {
+    white-space: nowrap;
+}
+
+#carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 96%;
+    max-width: 96%;
+    height: 100%;
+    margin-left: 2.96rem;
+    overflow-y: scroll !important;
+     
+    .vignette {
+        width: 120px;
+        height: calc(120px * 1.78);
+        display: inline-flex;
+        flex-direction: column;
+        margin: 1.5rem;
+        align-items: flex-end;
+        text-align: center;
+        border: 1px solid $LGREY;
+        border-radius: .61rem;
+
+        &.selected {
+            border: 3px solid $H1;
+        }
+
+        .action {
+            width: 100%;
+            display: inline-flex;
+            align-items: flex-end;
+            justify-content: right;
+            align-content: flex-start;
+            flex-grow: 1;
+            margin: .24rem;
+            border: 1px solid transparent;
+            border-top-right-radius: .61rem;
+            border-top-left-radius: .61rem;
+   
+            button.setCurrent {
+                width: 2.4rem;
+                height: 2.4rem;
+                margin-left: 1.2rem;
+                background-image: url(/img/bgDefault.svg);
+                background-color: $BG;
+                background-size: 1.77rem;
+                background-position: center;
+                background-repeat: no-repeat;
+                color: $BG;
+                border-color: transparent;
+                border-radius: 50%;
+            }
+
+            button.delete {
+                width: 2.4rem;
+                height: 2.4rem;
+                margin-right: .76rem; 
+                background-image: url(/img/Delete-w.svg);
+                background-color: $ALERT_BORDER;
+                background-size: 1.77rem;
+                background-position: center;
+                background-repeat: no-repeat;
+                color: $BG;
+                border-color: transparent;
+                border-radius: 50%;
+            }
+
+            span.current {
+                width: 2.4rem;
+                height: 2.4rem;
+                background-image: url(/img/checked.svg);
+                background-color: $BG;
+                background-size: 1.77rem;
+                background-position: center;
+                background-repeat: no-repeat;
+                color: $BG;
+                border-color: transparent;
+                border-radius: 50%;
+            }
+           
+        }
+        .stamp {
+            background-color: $BG;
+            color: $DARK;
+            padding: .17rem;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid $LGREY;
+            border-bottom-left-radius: .61rem;
+            border-bottom-right-radius: .61rem;
+            font-size: small;
+            font-family: Roboto;
+            text-align: left;
+
+           
+        }
+
+    }
+
+
+}

@@ -1,0 +1,13 @@
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart djZic-stream
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart djZic-status
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart icecast2
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart dnsmasq 
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart hostapd 
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl restart lighttpd
+www-data ALL=(ALL) NOPASSWD: /bin/systemct start dj-Zic-wifiRadar
+www-data ALL=(ALL) NOPASSWD: /bin/systemct stop dj-Zic-wifiRadar
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl reboot
+www-data ALL=(ALL) NOPASSWD: /bin/systemctl poweroff
+www-data ALL=(ALL) NOPASSWD: /usr/bin/ping -c 1 -w 1 *
+www-data ALL=(ALL) NOPASSWD: /usr/bin/chown -R www-data\:www-data /var/www/html/admin/uploads/
+www-data ALL=(ALL) NOPASSWD: /usr/bin/amixer -D default set PCM *

@@ -1,0 +1,17 @@
+[Unit]
+Description=DjZic Status and messaging (Python venv)
+After=djZic-stream.service
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/djZic
+Environment="PATH=/opt/djZic/venv/bin:/usr/local/bin:/usr/bin:/bin"
+ExecStart=/opt/djZic/venv/bin/python soundMonitor.py --no-logging
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

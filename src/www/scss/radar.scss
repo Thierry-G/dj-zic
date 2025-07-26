@@ -1,0 +1,324 @@
+@import 'colors';
+
+:root {
+    --main-color: rgb(247, 247, 247);
+    --menu--color: rgb(36, 36, 36);
+    --padding: 16px
+}
+
+html {
+    overflow: auto;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--main-color)
+}
+
+.wrapper {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    position: absolute;
+    position: absolute;
+    left: .76rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    @media screen and (min-width: 375px) {
+        top: .76rem;
+    }
+
+    @media screen and (min-width: 430px) {
+        top: .82rem;
+    }
+}
+
+.streamers {
+    width: 4.8rem;
+    height: 4.8rem;
+    color: $H1;
+    background-color: transparent;
+}
+
+#totalStreamers {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1 / 1;
+    height: 1.6rem;
+    text-align: center;
+    background-color: #f7f7f7;
+    color: #151515;
+    font-family: Roboto;
+    border-radius: 50%;
+
+    @media screen and (min-width: 375px) {
+        margin: -.76rem auto;
+    }
+
+    @media screen and (min-width: 430px) {
+        margin: -.96rem auto;
+    }
+
+}
+
+.close {
+    z-index: 99999999;
+    position: absolute;
+    right: .76rem;
+    width: 4.8rem;
+    height: 4.8rem;
+    margin: 0 auto;
+    border: none;
+    color: rgba(247, 247, 247, .3);
+    background-color: #340d75;
+    border-radius: 50%;
+    background-image: url(/img/exit.svg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    padding: .76rem;
+    margin-left: calc(50vw - 2.4rem);
+
+    @media screen and (min-width: 375px) {
+        top: .46rem;
+    }
+
+    @media screen and (min-width: 430px) {
+        top: .76rem;
+    }
+}
+
+.radar-container {
+    overflow-y: auto;
+    height: 76vh;
+    background-color: rgba(34, 34, 34, .1);
+    position: relative;
+}
+
+.radar-btns {
+    width: 100%;
+    background-color: var(--menu--color);
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+
+    @media screen and (min-width: 375px) {
+        height: 24vh;
+    }
+
+    @media screen and (min-width: 430px) {
+        height: 16rem;
+    }
+}
+
+.dot {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 24px;
+    background-color: var(--menu--color);
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.labels-above {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    z-index: 9;
+}
+
+.button {
+    width: 48px;
+    height: 48px;
+    background-color: #555;
+    color: var(--main-color);
+    border-radius: 50%;
+    border: none;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.layout {
+    overflow: hidden;
+    width: 92vw;
+    color: var(--main-color);
+    display: grid;
+    grid-template-areas:
+        ".  label-host ."
+        ".  scale-indicator ."
+        "zoom-out center zoom-in";
+    grid-template-columns: .5fr .5fr .5fr;
+    /* Adjust as needed */
+    grid-template-rows: auto auto;
+    align-items: center;
+    justify-items: center;
+
+    @media screen and (min-width: 430px) {
+        gap: 11px;
+    }
+}
+
+.label-host {
+    font-family: Open-Sans;
+    margin-top: 24px;
+    grid-area: label-host;
+    justify-self: center;
+    color: var(--main-color);
+    margin-bottom: 12px;
+
+    @media screen and (min-width: 425px) {
+        margin-top: 12px;
+    }
+}
+
+.zoom-in {
+    grid-area: zoom-in;
+    background-image: url(/img/zoomIn.svg);
+
+    &:disabled {
+        background-image: url(/img/zoomInd.svg);
+    }
+}
+
+.scale-indicator {
+    margin-top: 7px;
+    font-size: 16px;
+    font-family: Open-Sans;
+    color: var(--main-color);
+    grid-area: scale-indicator;
+    justify-self: center;
+
+}
+
+.center-btn {
+    grid-area: center;
+    background-image: url(/img/center.svg);
+}
+
+.zoom-out {
+    justify-self: left;
+    grid-area: zoom-out;
+    background-image: url(/img/zoomOut.svg);
+
+    &:disabled {
+        background-image: url(/img/zoomOutd.svg);
+    }
+}
+
+.center-btn,
+.zoom-out,
+.zoom-in {
+    margin-top: 24px;
+    width: 4.8rem;
+    height: 4.8rem;
+
+    @media screen and (min-width: 375px) {
+        margin-top: 12px;
+        width: 3.2rem;
+        height: 3.2rem;
+    }
+
+    @media screen and (min-width: 425px) {
+        margin-top: 8px;
+        width: 4.8rem;
+        height: 4.8rem;
+    }
+
+}
+
+.device-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+}
+
+.device-range {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    opacity: 0.3; // Increase from 0.1 to 0.3 or higher
+    box-sizing: border-box;
+    z-index: 1;
+    border: 2px solid; // Increase from 1px to 2px
+    background-color: transparent;
+}
+
+.device-label {
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    font-size: 14px;
+    font-family: Open-Sans;
+    color: var(--main-color);
+    z-index: 3;
+    pointer-events: none;
+    background-color: var(--menu--color);
+    padding: .32rem;
+    border-radius: 7px;
+
+    p {
+        padding: .16rem;
+        margin: 0;
+    }
+
+    &.right {
+        left: 110%; // Position to the right of the dot
+        text-align: center;
+    }
+
+    &.left {
+        right: 110%; // Position to the left of the dot
+        text-align: center;
+    }
+}
+
+.device-distance {
+    padding-top: .76rem;
+}
+
+
+
+.radar-viewport {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#master {
+    position: absolute;
+    left: 50%;
+
+    bottom: 0;
+    pointer-events: none;
+}
+
+.radar-btns .dot {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 10;
+    /* Above radar */
+}
