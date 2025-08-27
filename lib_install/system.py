@@ -38,6 +38,11 @@ def setUpDefault():
     runSysctl(['sudo', 'systemctl', 'mask', 'NetworkManager'])
     runSysctl(['sudo', 'rfkill', 'unblock', 'wifi'])
  
+ 
+def optimize():
+    runSysctl(['sudo', 'systemctl', 'disable', 'keyboard-setup.service'])  # If not needed
+    runSysctl(['sudo', 'systemctl', 'disable', 'fake-hwclock.service'])
+     
 def setWlan0Default():
     createSystemdOverride("hostapd", """\
 [Unit]
@@ -48,6 +53,10 @@ After=systemd-networkd.service
 [Unit]
 After=network-online.target
 Wants=network-online.target
+
+[Service]
+Restart=always
+RestartSec=5
 """)
     createSystemdOverride("icecast2", """\
 [Unit]
@@ -71,7 +80,30 @@ def setWlan1Default():
 After=systemd-networkd.service
 Requires=systemd-networkd.service
 """)
+    
     createSystemdOverride("dnsmasq", """\
+[Unit]
+# Wait for the network interface to be fully configured (IP assigned, routes set)
+After=network-online.target
+Wants=network-online.target
+
+# ALSO wait for the specific WiFi service to be active.
+# If you use NetworkManager:
+After=NetworkManager.service
+# If you use wpa_supplicant directly, use this instead:
+# After=wpa_supplicant.service
+
+[Service]
+# Don't consider it a failure if it can't bind immediately; just retry
+Restart=on-failure
+# Add a small delay before the first restart to avoid hammering the CPU
+RestartSec=5s
+# Wait 30 seconds for the service to start successfully before timing out
+TimeoutStartSec=30        
+""")
+    
+"""    
+createSystemdOverride("dnsmasq", "/""\
 [Unit]
 After=network-online.target systemd-networkd.service hostapd.service
 Wants=network-online.target systemd-networkd.service hostapd.service
@@ -82,7 +114,13 @@ Restart=always
 RestartSec=5
 #StartLimitBurst=10
 #StartLimitInterval=30
-""")
+"/"")
+"""sumary_line
+
+Keyword arguments:
+argument -- description
+Return: return_description
+"""
 
 def enableServices():
     if config.type != 'single':

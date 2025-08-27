@@ -110,9 +110,8 @@ def wlan1WpaConf():
         f.write("Description=Ad-hoc (IBSS) interface\n")
         f.write("Requires=sys-subsystem-net-devices-%i.device\n")
         f.write("After=sys-subsystem-net-devices-%i.device\n")
-        f.write("Before=network.target\n")
+        # removed f.write("Before=network.target\n")
         f.write("Wants=network-pre.target\n")
-
         f.write("[Service]\n")
         f.write(f"Environment=\"SSID=IBSS-DJzicNet\" \"FREQUENCY={frequency}\"\n")
         f.write("Type=oneshot\n")
@@ -175,6 +174,40 @@ def dnsmasqConf():
             f.write(f"dhcp-range=10.1.{config.id}.50,10.1.{config.id}.200,12h\n") 
             
     utils.copyFile(dnsmasq, "/etc/dnsmasq.conf")
+    
+    """
+    checkLan = " /usr/local/bin/check-wlan.sh"
+    with open(checkLan,'w') as f:
+        f.write('!/bin/bash\n\n')
+        f.write('WLAN_INTERFACES=("wlan0" "wlan1"\n')
+        f.write('MAX_RETRIES=15\n')
+        f.write('SLEEP_INTERVAL=2\n\n')
+        f.write('for iface in "${WLAN_INTERFACES[@]}"; do\n')
+        f.write('    for ((i=1; i<=MAX_RETRIES; i++)); do\n')
+        f.write('        # Check if interface exists\n')
+        f.write('        if ! ip link show "$iface" &>/dev/null; then\n')
+        f.write('            echo "Interface $iface not found. Retrying... ($i/$MAX_RETRIES)"\n')
+        f.write('        elif ip link show "$iface" | grep -q "state UP"; then\n')
+        f.write('            echo "$iface is up."\n')
+        f.write('            break\n')
+        f.write('        else\n')
+        f.write('            echo "$iface is down. Waiting... ($i/$MAX_RETRIES)"\n')
+        f.write('        fi\n')
+        f.write('        sleep $SLEEP_INTERVAL\n')
+        f.write('    done\n\n')
+
+        f.write('    # Final check\n')
+        f.write('    if ! ip link show "$iface" | grep -q "state UP"; then\n')
+        f.write('        echo "$iface did not come up after $MAX_RETRIES attempts. Aborting."\n')
+        f.write('        exit 1\n')
+        f.write('    fi\n')
+        f.write('done\n\n')
+        f.write('exit 0\n')
+        system.runSysctl(['sudo', 'chmod', '+x', checkLan])
+    """
+
+
+    
     system.createSystemdOverride("dnsmasq", """\
 [Unit]
 After=network-online.target

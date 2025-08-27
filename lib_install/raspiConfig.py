@@ -41,7 +41,6 @@ def soundConfig():
         printColored(f"\n✓ {config.lang.msg['raspiConfigDone']}", "GREEN")
         utils.markDone(step)
 
-
 def createAlsaCustom():
     # Pi 5 with sound card
     sourceFile = "/etc/modprobe.d/alsa-custom.conf"
