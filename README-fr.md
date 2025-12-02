@@ -1,6 +1,5 @@
 # Dj.zic
-[![English](https://img.shields.io/badge/Langue-Français-blue)](README.md)
-
+[![English](https://img.shields.io/badge/Language-English-blue)](README.md)
 <p align="center">
   <img src="Doc/logo-120.svg" alt="dj.Zic" width="120"/>
 </p>
